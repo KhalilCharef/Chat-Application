@@ -1,19 +1,13 @@
 <template>
-  <div class="container-fluid h-100">
+  
     <div class="row justify-content-center h-100">
-      <div class="col-md-4 col-xl-3 chat">
-        <div class="card mb-sm-3 mb-md-0 contacts_card">
-          <div class="card-footer"></div>
-        </div>
-      </div>
+     
       <div class="col-md-8 col-xl-6 chat">
         <div class="card">
           <div class="card-header msg_head">
-            <div class="d-flex bd-highlight">
-              <div>
-                <span class="online_icon"></span>
-                <span id="name">{{ authUser.displayName }}</span>
-              </div>
+            <div>
+              <span class="online_icon"></span>
+              <span id="name">{{ authUser.displayName }}</span>
             </div>
           </div>
           <div
@@ -22,8 +16,6 @@
             class="card-body msg_card_body"
           >
             <div class="d-flex justify-content-start mb-4">
-              <!-- <div class="img_cont_msg">
-              </div> -->
               <p
                 :class="[
                   message.author == authUser.displayName
@@ -32,7 +24,6 @@
                 ]"
               >
                 {{ message.message }}
-                <!-- <span class="msg_time">{{message.author}}</span> -->
                 <span class="msg_time">{{
                   message.author == authUser.displayName
                     ? "You"
@@ -43,11 +34,6 @@
           </div>
           <div class="card-footer">
             <div class="input-group">
-              <!-- <div class="input-group-append">
-                <span class="input-group-text attach_btn">
-                  <i class="fas fa-paperclip"></i>
-                </span>
-              </div>-->
               <textarea
                 @keyup.enter="save"
                 v-model="message"
@@ -66,29 +52,29 @@
         </div>
       </div>
     </div>
-  </div>
+ 
 </template>
 
 <script>
 // @ is an alias to /src
 import firebase from "firebase";
-import Darkmode from 'darkmode-js';
+import Darkmode from "darkmode-js";
 
 new Darkmode().showWidget();
 
 const options = {
-  bottom: '64px', // default: '32px'
-  right: 'unset', // default: '32px'
-  left: '32px', // default: 'unset'
-  time: '0.5s', // default: '0.3s'
-  mixColor: '#fff', // default: '#fff'
-  backgroundColor: '#fff',  // default: '#fff'
-  buttonColorDark: '#100f2c',  // default: '#100f2c'
-  buttonColorLight: '#fff', // default: '#fff'
+  bottom: "64px", // default: '32px'
+  right: "unset", // default: '32px'
+  left: "32px", // default: 'unset'
+  time: "0.5s", // default: '0.3s'
+  mixColor: "#fff", // default: '#fff'
+  backgroundColor: "#fff", // default: '#fff'
+  buttonColorDark: "#100f2c", // default: '#100f2c'
+  buttonColorLight: "#fff", // default: '#fff'
   saveInCookies: false, // default: true,
-  label: '🌓', // default: ''
-  autoMatchOsTheme: true // default: true
-}
+  label: "🌓", // default: ''
+  autoMatchOsTheme: true, // default: true
+};
 const darkmode = new Darkmode(options);
 darkmode.showWidget();
 
@@ -100,7 +86,6 @@ export default {
       messages: [],
       authUser: {},
     };
-    
   },
   methods: {
     save() {
@@ -152,7 +137,7 @@ export default {
         if (user) {
           next();
         } else {
-          this.$router.push('login');
+          this.$router.push("login");
         }
       });
     });
@@ -178,7 +163,7 @@ html {
   height: 600px;
   overflow-y: auto;
   border-radius: 15px 15px 0px 0px !important;
-  background-color: rgba(11, 61, 49, 0.472) ;
+  background-color: rgba(11, 61, 49, 0.472);
 }
 .contacts_body {
   padding: 0.75rem 0 !important;
@@ -192,9 +177,9 @@ html {
 .card-footer {
   border-top: 0 !important;
   position: fixed !important;
-  bottom: 31%;
-  right: 13.2%;
-  width: 1030px;
+  bottom: 26.5%;
+  left: 25.3%;
+  width: 1045px;
   padding: 0 !important;
 }
 .container {
@@ -337,7 +322,7 @@ html {
   font-size: 10px;
 }
 .msg_head {
-  position: relative;
+  position: fixed;
 }
 #action_menu_btn {
   position: absolute;
@@ -381,13 +366,32 @@ html {
   color: rgb(255, 255, 255);
   font-size: 20px;
 }
-.darkmode--activated .card, .darkmode--activated .type_msg  {
-
+.darkmode--activated .card,
+.darkmode--activated .type_msg {
   background-color: rgba(46, 46, 46, 0.952);
 }
 @media (max-width: 576px) {
   .contacts_card {
     margin-bottom: 15px !important;
   }
+}
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 </style>
